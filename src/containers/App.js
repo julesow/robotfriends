@@ -21,15 +21,12 @@ class App extends React.Component {
   };
 
   render() {
-    const fileteredRobots = this.state.robots.filter((robots, i) => {
-      return robots.name
-        .toLowerCase()
-        .includes(this.state.searchQuery.toLowerCase());
+    const { searchQuery, robots } = this.state;
+    const fileteredRobots = robots.filter((robot, i) => {
+      return robot.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
-    if (this.state.robots.length === 0) {
-      return <h1>Loading Robots ....</h1>;
-    } else {
-      return (
+    return !(robots.length)? <h1>Loading Robots ....</h1>
+   :(
         <div className="tc">
           <h1 className="f2">RoboFriend</h1>
           <SearchBox searchQuery={this.searchQuery} />
@@ -40,6 +37,6 @@ class App extends React.Component {
       );
     }
   }
-}
+
 
 export default App;
